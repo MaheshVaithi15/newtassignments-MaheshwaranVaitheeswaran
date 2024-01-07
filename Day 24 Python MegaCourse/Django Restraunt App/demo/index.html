@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Home</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <h2>Menu</h2>
+    {% for meal in meals %}
+    <h3>{{ meal.1 }}</h3>
+    {% for row in item_list %}
+    {% if row.meal_type == meal.0 %}
+    {% if row.status == 0 %}
+    <a href={% url 'menu_item' row.pk %}><h4><del>{{ row.meals }}</del></h4></a>
+    <p>{{ row.description }}</p>
+    <p>{{ row.price }}</p>
+    {% else %}
+    <a href={% url 'menu_item' row.pk %}><h4>{{ row.meals }}</h4></a>
+    <p>{{ row.description }}</p>
+    <p>{{ row.price }}</p>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+</body>
+</html>
